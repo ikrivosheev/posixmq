@@ -81,12 +81,15 @@ task:
     - cargo build -Zfeatures=all -Zminimal-versions
     - cargo build -Zfeatures=all -Zminimal-versions --features mio_06
     - cargo build -Zfeatures=all -Zminimal-versions --features mio_07
+    - cargo build -Zfeatures=all -Zminimal-versions --features mio_08
+    - cargo build -Zfeatures=all -Zminimal-versions --features mio_1
     - cargo build -Zfeatures=all -Zminimal-versions --all-features
   test_script:
     - cargo test -Zfeatures=all -Zminimal-versions
     - cargo test -Zfeatures=all -Zminimal-versions --features mio_06
-    - export RUSTFLAGS='--cfg feature="os-poll"'
     - cargo test -Zfeatures=all -Zminimal-versions --features mio_07
+    - cargo test -Zfeatures=all -Zminimal-versions --features mio_08
+    - cargo test -Zfeatures=all -Zminimal-versions --features mio_1
     - cargo test -Zfeatures=all -Zminimal-versions --all-features
   before_cache_script:
     - rm -rf $HOME/.cargo/registry/index
@@ -110,7 +113,6 @@ task:
     - cargo build --target i686-unknown-linux-gnu --all-features
     - cargo build --target i686-unknown-linux-musl --all-features
   test_script:
-    - export RUSTFLAGS='--cfg feature="os-poll"'
     - cargo test --target i686-unknown-linux-gnu --all-features
     - cargo test --target i686-unknown-linux-musl --all-features
     - cargo run --example limits
