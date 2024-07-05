@@ -18,6 +18,8 @@ task:
     - cargo build
     - cargo build --features mio_06
     - cargo build --features mio_07
+    - cargo build --features mio_08
+    - cargo build --features mio_1
     - cargo build --all-features
   test_script:
     - . $HOME/.cargo/env
