@@ -34,7 +34,7 @@ task:
 task:
   name: Linux amd64 1.31
   container:
-    image: rust:1.31
+    image: rust:1.79
     cpu: 1
     memory: 1
   cargo_cache:
@@ -52,7 +52,7 @@ task:
 task:
   name: Linux amd64 1.39
   container:
-    image: rust:1.39
+    image: rust:1.79
     cpu: 1
     memory: 1
   cargo_cache:
@@ -127,7 +127,7 @@ task:
   setup_script:
     - rustup component add clippy
     - rustup target add x86_64-unknown-netbsd
-    - rustup target add x86_64-sun-solaris
+    - rustup target add x86_64-pc-solaris
     - rustup target add x86_64-unknown-linux-gnux32
     - rustup target add aarch64-unknown-linux-gnu
   cargo_cache:
@@ -138,7 +138,7 @@ task:
     - cargo clippy --all-features
     - export RUSTFLAGS='--cfg feature="os-poll"'
     - cargo check --target x86_64-unknown-netbsd --tests --examples --all-features
-    - cargo check --target x86_64-sun-solaris --tests --examples
+    - cargo check --target x86_64-pc-solaris --tests --examples
     - cargo check --target x86_64-unknown-linux-gnux32 --tests --examples --all-features
     - cargo check --target aarch64-unknown-linux-gnu --tests --examples --all-features
   before_cache_script:
