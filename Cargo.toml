@@ -27,6 +27,9 @@ mio_1 = {package="mio", version="1.0", features=["os-ext"], optional=true}
 name = "merge"
 required-features = ["mio_07"]
 
+[dev-dependencies]
+mio_07 = {package="mio", version="0.7", features=["os-util"]}
+
 [features]
 mio_06 = ["dep:mio_06"]
 mio_07 = ["dep:mio_07"]

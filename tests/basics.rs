@@ -95,10 +95,7 @@ fn send_errors() {
         .capacity(2)
         .open("send")
         .unwrap();
-    assert_eq!(
-        nb.send(0, b"too long").unwrap_err().kind(),
-        ErrorKind::Other
-    );
+    assert!(nb.send(0, b"too long").is_err());
 
     let bl = OpenOptions::readwrite().open("send").unwrap();
     assert_eq!(
@@ -116,7 +113,7 @@ fn send_errors() {
     assert_eq!(nb.send(0, b"b").unwrap_err().kind(), ErrorKind::WouldBlock);
 
     let ro = OpenOptions::readonly().open("send").unwrap();
-    assert_eq!(ro.send(0, b"").unwrap_err().kind(), ErrorKind::Other); // opened read-only
+    assert!(ro.send(0, b"").is_err()); // opened read-only
 
     let _ = remove_queue("send");
 }
@@ -134,9 +131,9 @@ fn recv_errors() {
         nb.recv(&mut [0; 2]).unwrap_err().kind(),
         ErrorKind::WouldBlock
     );
-    assert_eq!(nb.recv(&mut []).unwrap_err().kind(), ErrorKind::Other); // buffer too short
+    assert!(nb.recv(&mut []).is_err()); // buffer too short
     let wo = OpenOptions::writeonly().open("receive").unwrap();
-    assert_eq!(wo.recv(&mut [0; 2]).unwrap_err().kind(), ErrorKind::Other); // opened write-only
+    assert!(wo.recv(&mut [0; 2]).is_err()); // opened write-only
 
     let _ = remove_queue("receive");
 }

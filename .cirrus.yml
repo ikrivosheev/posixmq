@@ -32,7 +32,7 @@ task:
     - rm -rf $HOME/.cargo/registry/index
 
 task:
-  name: Linux amd64 1.31
+  name: Linux amd64 1.79
   container:
     image: rust:1.79
     cpu: 1
@@ -50,7 +50,7 @@ task:
     - rm -rf $HOME/.cargo/registry/index
 
 task:
-  name: Linux amd64 1.39
+  name: Linux amd64 1.79
   container:
     image: rust:1.79
     cpu: 1

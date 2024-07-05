@@ -1,12 +1,12 @@
 //! Receive messages from multiple queues and send them to another,
 //! asynchronously.
 
+use std::env::args;
+use std::io::ErrorKind;
+
+use mio_07::{Events, Interest, Poll, Token};
+
 fn main() {
-    use std::env::args;
-    use std::io::ErrorKind;
-
-    use mio::{Events, Interest, Poll, Token};
-
     let mut queues = args().skip(1).collect::<Vec<_>>();
     let dst = queues.pop().expect("arguments required");
 

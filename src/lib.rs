@@ -1097,7 +1097,7 @@ impl PosixMq {
             target_os = "dragonfly",
         )))]
         Err(io::Error::new(
-            ErrorKind::Other,
+            io::ErrorKind::Other,
             "close-on-exec information is not available",
         ))
     }
@@ -1289,6 +1289,7 @@ impl Drop for PosixMq {
 // blanket-implement Sync, I can't see why an implementation would make it UB
 // to move operations to another thread.
 unsafe impl Send for PosixMq {}
+unsafe impl Sync for PosixMq {}
 
 /// An `Iterator` that calls [`recv()`](struct.PosixMq.html#method.recv) on a borrowed [`PosixMq`](struct.PosixMq.html).
 ///
